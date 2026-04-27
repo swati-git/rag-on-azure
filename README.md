@@ -1,0 +1,1 @@
+Create a storage for documents to store PDFs, Word docs, plain text, HTML.
