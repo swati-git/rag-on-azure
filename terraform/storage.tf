@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "storage_account_rag" {
-  name                     = "${var.environment}-${var.region}-storage_account-rag"
+  name                     = "documentstore"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
