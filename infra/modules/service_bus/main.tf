@@ -10,7 +10,7 @@ resource "azurerm_servicebus_queue" "page_events" {
   namespace_id = azurerm_servicebus_namespace.main.id
 
   # how long an unprocessed message lives before going to dead letter queue
-  message_time_to_live                  = "PT1H"
+  default_message_ttl                  = "PT1H"
 
   # how long the indexing worker has to process a message before it reappears
   lock_duration                         = "PT5M"

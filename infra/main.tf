@@ -18,3 +18,10 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 }
 
+module "service_bus" {
+  source              = "./modules/service_bus"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  project             = var.project
+  environment         = var.environment
+}
