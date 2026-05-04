@@ -15,3 +15,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "confluence_webhook_secret" {
+  description = "Secret token to validate Confluence webhooks"
+  type        = string
+  sensitive   = true
+}
