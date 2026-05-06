@@ -33,5 +33,5 @@ module "functions" {
   project                     = var.project
   environment                 = var.environment
   service_bus_connection_str  = module.service_bus.primary_connection_string
-  confluence_webhook_secret   = var.confluence_webhook_secret
 }
+
