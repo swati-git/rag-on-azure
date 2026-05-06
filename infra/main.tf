@@ -35,3 +35,11 @@ module "functions" {
   service_bus_connection_str  = module.service_bus.primary_connection_string
 }
 
+module "search_service" {
+  source                      = "./modules/search_service"
+  resource_group_name         = azurerm_resource_group.main.name
+  location                    = var.location
+  project                     = var.project
+  environment                 = var.environment
+
+}

@@ -44,3 +44,5 @@ npm install -g azure-functions-core-tools@4 --unsafe-perm true
 ```bash
 func azure functionapp publish <azurerm_linux_function_app.label.name>
 ```
+
+### 4. Provision Azure Search AI with Terraform
