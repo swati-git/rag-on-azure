@@ -33,11 +33,9 @@ resource "azurerm_linux_function_app" "webhook_receiver" {
     "SERVICE_BUS_CONNECTION_STR" = var.service_bus_connection_str
     "SERVICE_BUS_QUEUE_NAME"     = "confluence-page-events"
 
-    # Secret to validate that webhooks genuinely come from Confluence
-    "CONFLUENCE_WEBHOOK_SECRET"  = var.confluence_webhook_secret
-
     # Required Azure Functions settings
-    "FUNCTIONS_WORKER_RUNTIME"   = "python"
-    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true"
+    "FUNCTIONS_WORKER_RUNTIME"        = "python"
+    "SCM_DO_BUILD_DURING_DEPLOYMENT"  = "true"
+    "AzureWebJobsFeatureFlags"        = "EnableWorkerIndexing"
   }
 }
