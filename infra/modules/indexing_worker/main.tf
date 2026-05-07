@@ -24,4 +24,14 @@ resource "azurerm_linux_function_app" "indexing_worker" {
     "SEARCH_INDEX_NAME"                     = "confluence-pages"
 
   }
+
+  identity {
+    type = "SystemAssigned" 
+  }
+}
+
+resource "azurerm_role_assignment" "indexer_search_access" {
+  scope                =   var.search_service_id
+  role_definition_name =   "Search Index Data Contributor"
+  principal_id         =   azurerm_linux_function_app.indexing_worker.identity[0].principal_id
 }
