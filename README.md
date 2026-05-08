@@ -46,3 +46,25 @@ func azure functionapp publish <azurerm_linux_function_app.label.name>
 ```
 
 ### 4. Provision Azure Search AI with Terraform
+
+Run the create_index.py script to create an index
+``` bash
+python create_index.py
+```
+The same can be done via a CI/CD pipeline before deploying the Azure Function App
+
+#### How the Azure AI Search works internally:
+One request to "confluence-pages" index
+        │
+        ├── BM25 search on "content" and "title" fields
+        │       → returns keyword-matched results with BM25 scores
+        │
+        └── Vector search on "content_vector" field
+                → returns semantically similar results with cosine scores
+                │
+                ▼
+        RRF (Reciprocal Rank Fusion)
+        merges and re-ranks both result sets
+                │
+                ▼
+        Single merged result list returned
