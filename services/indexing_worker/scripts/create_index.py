@@ -113,4 +113,4 @@ index = SearchIndex(
 )
 
 result = client.create_or_update_index(index)
-print(f"Index '{result.name}' created successfully with scalar quantization")
+print(f"Index '{result.name}' created successfully with no scalar quantization") #scalar qunatization is not required for prototype and is adding complexity to the setup. We can add it later once the basic end-to-end flow is working. The code for scalar quantization is left in comments to make it easier to add later if needed.
