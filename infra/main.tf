@@ -41,7 +41,6 @@ module "search_service" {
   location                    = var.location
   project                     = var.project
   environment                 = var.environment
-
 }
 
 module "indexing_worker" {
@@ -61,6 +60,36 @@ module "indexing_worker" {
 
   # ── from module.search outputs ─────────────────────────────────────────────
   search_endpoint              = module.search_service.search_endpoint
+  search_service_id            = module.search_service.search_service_id
+ 
+  
+  confluence_base_url          = data.azurerm_key_vault_secret.confluence_base_url.value
+  confluence_email             = data.azurerm_key_vault_secret.confluence_email.value
+  confluence_api_token         = data.azurerm_key_vault_secret.confluence_api_token.value
+  
+  azure_openai_endpoint        = module.openai.endpoint
+  azure_openai_embedding_model = module.openai.embedding_deployment_name
+  azure_openai_id              = module.openai.id
 
 }
 
+data "azurerm_client_config" "current" {}
+
+module "keyvault" {
+  source                     = "./modules/keyvault"
+  resource_group_name        = azurerm_resource_group.main.name
+  location                   = var.location
+  project                    = var.project
+  environment                = var.environment
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  terraform_caller_object_id = data.azurerm_client_config.current.object_id
+}
+
+
+module "openai" {
+  source              = "./modules/openai"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  project             = var.project
+  environment         = var.environment
+}
