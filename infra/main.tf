@@ -56,7 +56,9 @@ module "indexing_worker" {
   storage_account_key          = module.functions.storage_account_key
 
   # ── from module.service_bus outputs ──────────────────────────────────────────
-  service_bus_connection_str = module.functions.storage_account_key
+  service_bus_connection_str = module.service_bus.primary_connection_string
+  #service_bus_id             = module.service_bus.service_bus_id
+
 
   # ── from module.search outputs ─────────────────────────────────────────────
   search_endpoint              = module.search_service.search_endpoint
