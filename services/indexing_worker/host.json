@@ -1,0 +1,43 @@
+{
+    "version": "2.0",
+    "functionTimeout": "-1",
+    "logging": {
+        "fileLoggingMode": "debugOnly",
+        "logLevel": {
+            "default": "Information",
+            "Host": "Warning",
+            "Function": "Information",
+            "Host.Aggregator": "Information"
+        },
+        "applicationInsights": {
+            "samplingSettings": {
+                "isEnabled": true,
+                "excludedTypes": "Request",
+                "maxTelemetryItemsPerSecond": 20
+            },
+            "enableLiveMetrics": true,
+            "enableDependencyTracking": true,
+            "enablePerformanceCountersCollection": false
+        }
+    },
+    "extensions": {
+        "serviceBus": {
+            "prefetchCount": 0,
+            "autoCompleteMessages": false,
+            "maxAutoLockRenewalDuration": "00:05:00",
+            "maxConcurrentCalls": 1,
+            "maxConcurrentSessions": 1
+        }
+    },
+    "extensionBundle": {
+        "id": "Microsoft.Azure.Functions.ExtensionBundle",
+        "version": "[4.*, 5.0.0)"
+    },
+    "healthMonitor": {
+        "enabled": true,
+        "healthCheckInterval": "00:00:10",
+        "healthCheckWindow": "00:02:00",
+        "healthCheckThreshold": 6,
+        "counterThreshold": 0.80
+    }
+}
