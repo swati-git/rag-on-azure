@@ -42,7 +42,16 @@ npm install -g azure-functions-core-tools@4 --unsafe-perm true
 
 #### Deploy Webhook Receiver to Function App
 ```bash
-func azure functionapp publish <azurerm_linux_function_app.label.name>
+func azure functionapp publish <name of the function app>
+```
+Test the connectivity between webhook_receiver and service bus, locally
+Terminal 1:
+```bash 
+func start
+```
+Terminal 2:
+```bash
+curl -X POST <webhook_receiver_url> -H "Content-Type/json" -d '{ "webhookEvent": "page_updated","page" : {"id": "12345", "title": "Test Page"}}'
 ```
 
 ### 4. Provision Azure Search AI with Terraform
@@ -68,3 +77,15 @@ One request to "confluence-pages" index
                 │
                 ▼
         Single merged result list returned
+
+### 6. Deploy the function app ConfluenceIndexer that will consume events from the service bus.
+
+### 8. Provision an embedding model in Foundry that will generate embeddings for the confluence events.
+
+### 9. Provision a Key Vault and store the confluence secrets 
+```bash 
+az keyvault secret set --vault-name $KV_NAME --name "confluence-api-token"  --value "<your confluence api token>"
+```
+
+
+
