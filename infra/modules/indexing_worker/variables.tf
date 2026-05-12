@@ -16,6 +16,8 @@ variable "search_endpoint"              { type = string }
 
 variable "service_bus_connection_str"    {type = string}
 
+variable "service_bus_id"    {type = string}
+
 variable "search_service_id"    {type = string}
 
 variable "azure_openai_embedding_model"  {type = string}
