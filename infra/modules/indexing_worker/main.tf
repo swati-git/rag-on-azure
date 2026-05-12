@@ -22,7 +22,11 @@ resource "azurerm_linux_function_app" "indexing_worker" {
     "SERVICE_BUS_QUEUE_NAME"                = "confluence-page-events"
     "SEARCH_ENDPOINT"                       = var.search_endpoint
     "SEARCH_INDEX_NAME"                     = "confluence-pages"
+    "AZURE_OPENAI_ENDPOINT"                 = var.azure_openai_endpoint
     "AZURE_OPENAI_EMBEDDING_MODEL"          = var.azure_openai_embedding_model
+    "CONFLUENCE_BASE_URL"                   = var.confluence_base_url
+    "CONFLUENCE_API_TOKEN"                  = var.confluence_api_token
+    "CONFLUENCE_EMAIL"                      = var.confluence_email
 
   }
 
@@ -42,4 +46,6 @@ resource "azurerm_role_assignment" "indexer_openai_access" {
   role_definition_name = "Cognitive Services OpenAI User"
   principal_id         = azurerm_linux_function_app.indexing_worker.identity[0].principal_id
 }
+
+
 
